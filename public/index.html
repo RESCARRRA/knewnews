@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Knew News</title>
+    <!--CSS // Bootstrap 3.37 or 4.0--> 
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+    
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li><a class="navbar-brand" href="index.html">Knew News</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="./saved.html">Saved Articles</a></li>
+            <li><a href="/scrape">Scrape</a></li>
+          </ul>
+        </div>
+    </nav>
+    <div class='container wrap' id='wrapper'>
+      <div class='well-lg' id="scraped"></div>
+    </div>
+
+
+    <div class="container text-left wrap" id="saved">
+        <div class="well-lg" id="savedarticles"></div>
+        <div class="well-lg form-group" id="notes"></div>
+    </div>
+
+      <!-- <div id="myModal" class="modal-custom clearfix">
+          <div class="modal-content-custom rounded-0 clearfix">
+              <span class="close-modal">&times;</span>
+              <h3 class="m-3">Article added</h3>
+          </div>
+      </div> -->
+<script>
+  
+  $.getJSON("/articles", function(data) {
+    // For each one
+    for (var i = 0; i < 20; i++) {
+      // Display the apropos information on the page
+      $("#scraped").append("<div class='articlediv well-lg'><h3 data-id='" + data[i]._id + "'>" + data[i].title + "</h3><p>" + data[i].link + "</p><button class='btn btn-sm' id='save'>" + 'Save' +"</button></div>");
+    }
+  });
+
+
+</script>
+    </body>
+</html>
